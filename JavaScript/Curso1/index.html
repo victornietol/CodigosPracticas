@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <script src="index.js" defer></script>
+</head>
+<body style="font-family: sans-serif;">
+    <h1>PRUEBA DE JAVASCRIPT</h1>
+
+    <p id="datos1"></p>
+    
+    <!-- los id corresponden a los elementos asignados en el archivo javascript -->
+     <center>
+        <hr>
+        <h2 id="textoInicial">Boton sin presionar</h2>
+        <!-- Comportamiento de boton sin asignar una function -->
+        <button id="boton1">Presionar Boton</button>
+        <button id="botonReinicio">Reiniciar conteo boton</button>
+    </center>
+
+    <center>
+        <hr>
+        <h2>Operaciones</h2>
+        <label for="numero1">Numero: </label>
+        <input type="number" id="numero1" placeholder="Ingresa un numero">
+
+        <label for="numero2">Numero: </label>
+        <input type="number" id="numero2" placeholder="Ingresa un numero">
+
+        <br><br>
+
+        <!-- Comportamiento de botones con function -->
+        <button onclick="sumarNumeros()">Sumar</button>
+        <button onclick="restarNumeros()">Restar</button>
+        <button onclick="dividirNumeros()">Dividir</button>
+
+        <p id="resultadoOperacion"></p>
+    </center>
+
+    <p>
+        <hr>
+        <h2>Texto Generico</h2>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti odio ipsam amet 
+        a nemo quo! Facere, veritatis! A dolor praesentium quae repudiandae sint corporis 
+        voluptate nesciunt, vel illum, cupiditate quasi?
+    </p>
+
+</body>
+</html>
