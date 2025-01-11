@@ -366,12 +366,231 @@ def numero_armstrong2(num: int) -> bool:
         print("El numero introducido no es un numero entero")
 
 
+# Ejercicio 16
+# Diferencia de dias
+def mes_valido(mes: int):
+    return True if (mes>0 and mes<13) else False
+def dia_valido(dia: int):
+    return True if (dia>0 and dia<32) else False
+def cual_es_menor(fecha1:list, fecha2:list):
+    if(fecha1[2]>fecha2[2]):
+        return fecha2, fecha1 # menor, mayor
+    elif(fecha1[2]<fecha2[2]):
+        return fecha1, fecha2
+    else:   # Mismo anio
+        if(fecha1[1]>fecha2[1]):
+            return fecha2, fecha1
+        elif(fecha1[1]<fecha2[1]):
+            return fecha1, fecha2
+        else: # Es el mismo mes
+            if(fecha1[0]>fecha2[0]):
+                return fecha2, fecha1
+            elif(fecha1[0]<fecha2[0]):
+                return fecha1, fecha2
+            else:
+                return 0,0 # Es a misma fecha
+def obtener_dias(fecha_menor, fecha_mayor) -> int:
+    MESES_31 = [1,3,5,7,8,10,0,12] # 0 = diciembre
+    MESES_30 = [4,6,9,11]
+    MES_28 = [2]
+    conteo_dias = 0
+    # Obteniendo dias
+    while fecha_menor!=fecha_mayor: # fecha = [dia,mes,anio]
+        # Modificar año
+        if(fecha_menor[2]<(fecha_mayor[2]-1)): # Dos años antes del mayor
+            fecha_menor[2] += 1 # Sumar un año
+            if(fecha_menor[2]%4 == 0): # Es año bisiesto
+                conteo_dias += 366
+            else:
+                conteo_dias += 365
+        elif(fecha_menor[2]==(fecha_mayor[2]-1)): # Un año antes
+            # Modificar mes hasta igualar el año
+            mes_actualizado = (fecha_menor[1]+1) % 12 # Sumar un mes hasta igualar el año
+            fecha_menor[1] = 12 if mes_actualizado==0 else mes_actualizado  # Ajustar mes
+            fecha_menor[2] = fecha_menor[2]+1 if (fecha_menor[1]==1) else fecha_menor[2] # Ajustando año dependiendo del mes
+            # Actualizando conteo de dias
+            if(fecha_menor[1] in MESES_30):
+                conteo_dias += 30
+            elif(fecha_menor[1] in MESES_31):
+                conteo_dias += 31
+            elif(fecha_menor[1] in MES_28):
+                conteo_dias = conteo_dias+29 if (fecha_menor[2]%4 == 0) else conteo_dias+28 # Si es año bisiesto se suma un dia mas en febrero
+            continue # Volver a verificar la condicion del while
+        elif(fecha_menor[2]==fecha_mayor[2]): # Mismo año
+            # Sumar mes hasta llegar a un mes antes
+            if(fecha_menor[1]<(fecha_mayor[1]-1)): # No ha llegado al mes correspondiente (dos mes antes)
+                mes_actualizado = (fecha_menor[1]+1) % 12 # Sumar un mes hasta igualar el año
+                fecha_menor[1] = 12 if mes_actualizado==0 else mes_actualizado # Ajustar el mes
+                # Actualizando conteo de dias
+                if(fecha_menor[1] in MESES_30):
+                    conteo_dias += 30
+                elif(fecha_menor[1] in MESES_31):
+                    conteo_dias += 31
+                elif(fecha_menor[1] in MES_28):
+                    conteo_dias = conteo_dias+29 if (fecha_menor[2]%4 == 0) else conteo_dias+28 # Si es año bisiesto se suma un dia mas en febrero
+                continue # Volver a verificar la condicion del while
+            elif(fecha_menor[1]==(fecha_mayor[1]-1)): # Un mes antes
+                # Modicar dia (sumar dia hasta llegar igualar al mes)
+                if(fecha_menor[1] in MES_28 and fecha_menor[2]%4==0): # Si es año bisiesto y febrero
+                    dia_actualizado = (fecha_menor[0]+1) % 29
+                    fecha_menor[0] = 29 if (dia_actualizado==0) else dia_actualizado
+                    mes_actualizado = (fecha_menor[1]+1) % 12 if (fecha_menor[0]==1) else fecha_menor[1] # Ajustando mes dependiendo del resultado de la suma del dia
+                    fecha_menor[1] = 12 if mes_actualizado==0 else mes_actualizado # Ajustando mes
+                    conteo_dias += 1
+                elif(fecha_menor[1] in MES_28):
+                    dia_actualizado = (fecha_menor[0]+1) % 28
+                    fecha_menor[0] = 28 if (dia_actualizado==0) else dia_actualizado
+                    mes_actualizado = (fecha_menor[1]+1) % 12 if (fecha_menor[0]==1) else fecha_menor[1] # Ajustando mes
+                    fecha_menor[1] = 12 if mes_actualizado==0 else mes_actualizado # Ajustando mes
+                    conteo_dias += 1
+                elif(fecha_menor[1] in MESES_30):
+                    dia_actualizado = (fecha_menor[0]+1) % 30
+                    fecha_menor[0] = 30 if (dia_actualizado==0) else dia_actualizado
+                    mes_actualizado = (fecha_menor[1]+1) % 12 if (fecha_menor[0]==1) else fecha_menor[1] # Ajustando mes
+                    fecha_menor[1] = 12 if mes_actualizado==0 else mes_actualizado # Ajustando mes
+                    conteo_dias += 1
+                elif(fecha_menor[1] in MESES_31):
+                    dia_actualizado = (fecha_menor[0]+1) % 31
+                    fecha_menor[0] = 31 if (dia_actualizado==0) else dia_actualizado
+                    mes_actualizado = (fecha_menor[1]+1) % 12 if (fecha_menor[0]==1) else fecha_menor[1] # Ajustando mes
+                    fecha_menor[1] = 12 if mes_actualizado==0 else mes_actualizado # Ajustando mes
+                    conteo_dias += 1
+                continue
+            elif(fecha_menor[1]==fecha_mayor[1]): # Mismo mes
+                # Sumar dias hasta igual la fecha
+                fecha_menor[0] += 1
+                conteo_dias += 1
+                continue
+        elif(fecha_menor==fecha_mayor):
+            return conteo_dias
+    return conteo_dias
+
+def diferencia_dias(fecha1: str, fecha2: str):
+    try:
+        fecha1_dia = int(fecha1[:2]) 
+        fecha1_mes = int(fecha1[3:5])
+        fecha1_anio = int(fecha1[6:])
+
+        fecha2_dia = int(fecha2[:2])
+        fecha2_mes = int(fecha2[3:5])
+        fecha2_anio = int(fecha2[6:])
+
+        if(mes_valido(fecha1_mes)==False or mes_valido(fecha2_mes)==False):
+            raise ValueError("Mes fuera de rango")
+        if(dia_valido(fecha1_dia)==False or dia_valido(fecha2_dia)==False):
+            raise ValueError("Dia fuera de rango")
+            
+        fecha_menor, fecha_mayor = cual_es_menor([fecha1_dia,fecha1_mes,fecha1_anio],[fecha2_dia,fecha2_mes,fecha2_anio])
+        
+        if(fecha_menor==0 and fecha_mayor==0): # Si es la misma fecha
+            return 0
+        else:
+            return obtener_dias(fecha_menor,fecha_mayor)
+    except Exception as e:
+        print(f"Error en el valor de la fecha: {e}")
 
 
+
+# Ejercicio 17
+def inicial_mayuscula(texto: str) -> str:
+    nueva_cadena = ""
+    es_nueva = True
+    for i in range(len(texto)):
+        try:
+            if(i==0):
+                nueva_cadena += texto[i].upper()
+                es_nueva = False
+            elif(texto[i]==" "):
+                nueva_cadena += " "
+                es_nueva = True
+            elif(es_nueva):
+                nueva_cadena += texto[i].upper()
+                es_nueva = False
+            elif(not es_nueva):
+                nueva_cadena += texto[i]
+        except Exception as e:
+            continue
+    return nueva_cadena
+
+
+
+# Ejercicio 18
+def carrera_obstaculos(pista: list, recorrido_atleta: list) -> bool:
+    if(len(pista) != len(recorrido_atleta)):
+        return False
+    else:
+        for i in range(len(pista)):
+            if(pista[i]=="_" and recorrido_atleta[i]=="run"):
+                continue
+            elif(pista[i]=="|" and recorrido_atleta[i]=="jump"):
+                continue
+            elif(pista[i]=="_" and recorrido_atleta[i]=="jump"):
+                pista[i] = "x"
+            elif(pista[i]=="|" and recorrido_atleta[i]=="run"):
+                pista[i] = "/"
+            else:
+                pista[i] = "x"
+        if("x" in pista) or ("/" in pista):
+            return False
+        else:
+            return True
+        
+
+
+# Ejercicio 19
+def verificar_gato(tablero) -> str:
+    # Verificar columnas
+    for c1,c2,c3 in zip(tablero[0],tablero[1],tablero[2]):
+        if(c1=="X" and c2=="X" and c3=="X"):
+            return "X"
+        elif(c1=="0" and c2=="0" and c3=="0"):
+            return "0"
+    # Verificar renglones
+    for ren in tablero:
+        if(ren[0] == "X" and ren[1]=="X" and ren[2]=="X"):
+            return "X"
+        elif(ren[0] == "0" and ren[1]=="0" and ren[2]=="0"):
+            return "0"
+    # Verificar diagonales
+    if( all(tablero[i][i]=="X" for i in range(3)) ): # Diagonal superior izquierda a inferior derecha
+        return "X"
+    if( all(tablero[i][i]=="0" for i in range(3)) ): # Diagonal superior izquierda a inferior derecha
+        return "0"
+    if( all(tablero[i][2-i]=="X" for i in range(3)) ): # Diagonal superior derecha a inferior izquierda
+        return "X"
+    if( all(tablero[i][2-i]=="0" for i in range(3)) ): # Diagonal superior derecha a inferior izquierda
+        return "0"
 
 if __name__ == '__main__':
+    tablero = [["X","","0"],["X","0",""],["0","","X"]]
+    ganador = verificar_gato(tablero)
+    print(ganador)
+
+
+    '''
+    pista = ["_","_","|","_"]
+    atleta = ["run","run","jump","run"]
+    resultado = carrera_obstaculos(pista,atleta)
+    print(resultado)
+    '''
+
+    '''
+    cadena = "hola buenos dias, texto de prueba."
+    cadena = inicial_mayuscula(cadena)
+    print(cadena)
+    '''
+
+    '''
+    #dias = diferencia_dias("18/12/2023","19/10/2020")
+    dias = diferencia_dias("18/12/2023","18/12/2022")
+    print(dias)
+    '''
+
+
+    '''
     print(numero_armstrong2(153))
     print(numero_armstrong(370))
+    '''
 
     #print(factorial(5))
 
