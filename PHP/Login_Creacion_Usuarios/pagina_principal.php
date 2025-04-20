@@ -30,8 +30,9 @@ header("Expires: 0"); // Proxy
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Cifrado y descifrado</title>
     <link rel="stylesheet" href="./styles/styles2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <header>
@@ -42,6 +43,7 @@ header("Expires: 0"); // Proxy
                 ?>
             </span>
             <button id="btn_logout" onclick="location.href='./logout.php'">
+                <i class="bi bi-box-arrow-right"></i>
                 Cerrar Sesion
             </button>
         </div>
@@ -62,13 +64,24 @@ header("Expires: 0"); // Proxy
                     }?></textarea>
                 </div>
                 <div class="botones-caja-texto">
-                    <button class="btn-general" onclick="obtenerLlave('cifrar')" type="button">Cifrar</button>
-                    <button class="btn-general" type="reset">Limpiar</button>
+                    <button class="btn-general" onclick="obtenerLlave('cifrar')" type="button">
+                        <i class="bi bi-lock-fill"></i>
+                        Cifrar
+                    </button>
+                    <button class="btn-general" onclick="limpiarTexto('plano')" type="button">
+                        <i class="bi bi-arrow-repeat"></i>
+                        Limpiar
+                    </button>
+                    <button class="btn-general" onclick="copiarTexto('plano')" id="boton_copiar_plano" title="Copiar" type="button">
+                        <i id="icono_copiar_plano" class="bi bi-check-lg"></i>
+                        <i class="bi bi-clipboard-fill"></i>
+                        Copiar
+                    </button>
                 </div>
                 <input type="hidden" name="llave_cifrado" id="llave_cifrado">
             </form>
         </div>
-        <div style="margin-top: 30px">
+        <div style="margin-top: 30px; margin-bottom: 30px;">
             <h2>Texto cifrado</h2>
             <form action="./cifrado_cesar.php" id="form_descifrar" method="post">
                 <div>
@@ -78,17 +91,27 @@ header("Expires: 0"); // Proxy
                     }?></textarea>
                 </div>
                 <div class="botones-caja-texto">
-                    <button class="btn-general" onclick="obtenerLlave('descifrar')" type="button">Descifrar</button>
-                    <button class="btn-general" type="reset">Limpiar</button>
+                    <button class="btn-general" onclick="obtenerLlave('descifrar')" type="button">
+                        <i class="bi bi-unlock-fill"></i>
+                        Descifrar
+                    </button>
+                    <button class="btn-general" onclick="limpiarTexto('cifrado')" type="button">
+                        <i class="bi bi-arrow-repeat"></i>    
+                        Limpiar
+                    </button>
+                    <button class="btn-general" onclick="copiarTexto('cifrado')" id="boton_copiar_cifrado" title="Copiar" type="button">
+                        <i id="icono_copiar_cifrado" class="bi bi-check-lg"></i>
+                        <i class="bi bi-clipboard-fill"></i>
+                        Copiar
+                    </button>
                 </div>
                 <input type="hidden" name="llave_descifrado" id="llave_descifrado">
             </form>
         </div>
     </main>
     
-    <footer>
-
-    </footer>
+    <?php include('./footer.php') ?>
+    
     <script src="./js/script.js"></script>
 </body>
 </html>

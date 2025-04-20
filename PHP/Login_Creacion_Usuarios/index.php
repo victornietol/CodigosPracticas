@@ -65,7 +65,6 @@ if(isset($_SESSION['connected'])) {
                     <input type="checkbox" id="remember" name="check_remember">
                     <p>Recuerdame</p>
                 </label>
-                <a href="#">Olvide mi password</a>
             </div>
     
             <button type="submit">Ingresar</button>
