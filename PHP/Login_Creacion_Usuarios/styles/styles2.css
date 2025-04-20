@@ -26,7 +26,7 @@ body::before {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url("../img/fondo2.png"), #fff;
+    background: url("../img/fondo.png"), #02003d;
     background-position: center;
     background-size: cover;
     z-index: -1;
@@ -50,6 +50,35 @@ header {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.botones-caja-texto {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-general {
+    margin-top: 15px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #ff4d4d;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.caja-texto {
+    width: 80vw; 
+    height: 25vh;
+    margin-top: 20px;
+    resize: none;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 4px;
 }
 
 #header_usuario {
