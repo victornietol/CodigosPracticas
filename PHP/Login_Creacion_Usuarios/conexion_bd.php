@@ -2,7 +2,7 @@
 
 $host_db = "localhost:3306";
 $user_db = "root";
-$pass_db = "virgo971000";
+$pass_db = "123456";
 $db_name = "hash_pruebas";
 $table_name = "cuentas";
 
