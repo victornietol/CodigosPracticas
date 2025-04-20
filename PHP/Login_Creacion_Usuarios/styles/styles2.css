@@ -2,7 +2,7 @@
 
 #titulo_principal {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 * {
@@ -17,8 +17,9 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     color: white;
+    flex-direction: column;
 }
 
 body::before {
@@ -44,6 +45,18 @@ header {
     top: 0;
     left: 0;
     z-index: 10;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: #212529;
+    color: #6c757d;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
 }
 
 .header-elementos {
@@ -79,6 +92,7 @@ header {
     word-wrap: break-word;
     padding: 10px;
     border-radius: 4px;
+    text-align: justify;
 }
 
 #header_usuario {
@@ -97,4 +111,14 @@ header {
 
 #btn_logout {
     background-color: #ff3333;
+}
+
+#icono_copiar_plano {
+    display: none;
+    margin-right: 5px;
+}
+
+#icono_copiar_cifrado {
+    display: none;
+    margin-right: 5px;
 }
