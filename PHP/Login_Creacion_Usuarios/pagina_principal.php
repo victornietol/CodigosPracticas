@@ -31,6 +31,8 @@ header("Expires: 0"); // Proxy
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cifrado y descifrado</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icono.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icono.png">
     <link rel="stylesheet" href="./styles/styles2.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
