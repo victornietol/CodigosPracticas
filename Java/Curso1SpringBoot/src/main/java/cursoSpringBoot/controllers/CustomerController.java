@@ -2,8 +2,7 @@ package cursoSpringBoot.controllers;
 
 
 import cursoSpringBoot.domain.Customer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,9 +19,29 @@ public class CustomerController {
             new Customer("omar011p", 4, "omar", "pass1234")
     ));
 
-    @GetMapping("/clientes")
+
     // REGRESA LA LISTA DE CLIENTES
+    @GetMapping("/clientes")
     public List<Customer> getCustomers() {
         return customers;
     }
+
+    // un cliente en especifico
+    @GetMapping("/clientes/{username}")
+    public Customer getCliente(@PathVariable String username) {
+        for(Customer c: customers) {
+            if(c.getUsername().equalsIgnoreCase(username)) {
+                return c;
+            }
+        }
+        return null; // No se debe retornar null, pero  por el momento se deja asi
+    }
+
+    // permite agregar un nuevo cliente
+    @PostMapping("/clientes")
+    public Customer postCliente(@RequestBody Customer customer) { // recibe valores json y los transforma al objeto objetivo
+        customers.add(customer);
+        return customer;
+    }
+
 }
