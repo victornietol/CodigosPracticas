@@ -44,4 +44,50 @@ public class CustomerController {
         return customer;
     }
 
+    // modificar un objeto completo
+    @PutMapping("/clientes")
+    public Customer putCliente(@RequestBody Customer customer) {
+        for(Customer c: customers) {
+            if(c.getId() == customer.getId()) {
+                c.setNombre(customer.getNombre());
+                c.setUsername((customer.getUsername()));
+                c.setPassword(customer.getPassword());
+                return c;
+            }
+        }
+        return null; // No debe mandarse null, debe manejarse el error
+    }
+
+    // eliminar un objeto completo
+    @DeleteMapping("/clientes/{id}")
+    public Customer deleteCliente(@PathVariable int id) {
+        for (Customer c: customers) {
+            if(c.getId()==id) {
+                customers.remove(c);
+                return c;
+            }
+        }
+        return null; // No debe mandarse null, debe manejarse el error
+    }
+
+    // modificar parcialmente un objeto
+    @PatchMapping("/clientes")
+    public Customer patch(@RequestBody Customer customer) {
+        for(Customer c: customers) {
+            if(c.getId()==customer.getId()) {
+                if (customer.getNombre()!=null) {
+                    c.setNombre(customer.getNombre());
+                }
+                if (customer.getUsername()!=null) {
+                    c.setUsername(customer.getUsername());
+                }
+                if (customer.getPassword()!=null) {
+                    c.setPassword(customer.getPassword());
+                }
+                return c; // Se realizo la operacion
+            }
+        }
+        return null; // No debe mandarse null, debe manejarse el error
+    }
+
 }
