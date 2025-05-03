@@ -61,9 +61,10 @@ public class CustomerController {
                 c.setNombre(customer.getNombre());
                 c.setUsername((customer.getUsername()));
                 c.setPassword(customer.getPassword());
-                return ResponseEntity.ok("Cliente modificado correctamente con id: "+customer.getId());
+                return ResponseEntity.noContent().build(); // Codigo http tipo 204
             }
         }
+        // return ResponseEntity.notFound().build(); // Lo mismo que la sig linea, pero sin mensaje personalizado
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: "+customer.getId());
     }
 
@@ -74,10 +75,10 @@ public class CustomerController {
         for (Customer c: customers) {
             if(c.getId()==id) {
                 customers.remove(c);
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Cliente eliminado correctamente con id: "+id);
+                return ResponseEntity.noContent().build();
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: "+id);
+        return ResponseEntity.notFound().build();
     }
 
     // modificar parcialmente un objeto
