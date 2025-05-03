@@ -5,7 +5,9 @@ import cursoSpringBoot.domain.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +51,15 @@ public class CustomerController {
     @PostMapping // --> RequestMapping
     public ResponseEntity<?> postCliente(@RequestBody Customer customer) { // recibe valores json y los transforma al objeto objetivo
         customers.add(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Cliente creado correctamente con username: "+customer.getUsername());
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{username}")
+                .buildAndExpand(customer.getUsername())
+                .toUri(); // URI del recurso, se debe indicar el mismo parametro que el GET para obtener un solo recurso, ademas en builAndExpand debe ir el parametro que se indica en path
+
+        // return ResponseEntity.created(location).body(customer); // --> Asi se regresa tambien el recurso creado, el codigo de estado y la URI
+        return ResponseEntity.created(location).build(); // En este caso solo se regresa el codigo de respuesta y la URI
     }
 
     // modificar un objeto completo
