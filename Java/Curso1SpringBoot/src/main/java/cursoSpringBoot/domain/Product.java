@@ -14,6 +14,9 @@ public class Product {
         this.stock = stock;
     }
 
+    public Product() {
+    }
+
     public Integer getId() {
         return id;
     }
