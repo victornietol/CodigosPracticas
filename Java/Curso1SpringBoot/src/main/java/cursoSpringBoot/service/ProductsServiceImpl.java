@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductsServiceImpl {
+public class ProductsServiceImpl implements ProductService {
 
     // Los datos de la siguiente lista deben ir en una base de datos, por el momento solo es un ejemplo
     List<Product> products = new ArrayList<>(Arrays.asList(
@@ -16,6 +16,8 @@ public class ProductsServiceImpl {
             new Product(0, "Telefono", 5300.00, 15)
     ));
 
+    // Comportamiento para el acceso a los datos (se implementa el comportamiento)
+    @Override
     public List<Product> getProducts() {
         return products;
     }
