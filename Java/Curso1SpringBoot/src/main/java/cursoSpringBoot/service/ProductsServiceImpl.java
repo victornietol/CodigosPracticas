@@ -1,11 +1,15 @@
 package cursoSpringBoot.service;
 
 import cursoSpringBoot.domain.Product;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Lazy
+@Service("listResourceService")
 public class ProductsServiceImpl implements ProductService {
 
     // Los datos de la siguiente lista deben ir en una base de datos, por el momento solo es un ejemplo
