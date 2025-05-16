@@ -67,11 +67,60 @@ public class OtrasPruebas {
         }
     }
 
+    // Implementar otra solucion que sea eficiente
+    public static List<Integer> twoSum(List<Integer> numeros, int objetivo) {
+        int longitud = numeros.size();
+        int suma = 0;
+        List<Integer> resultado = new ArrayList<>();
+        for(int i=0; i<longitud; i++) { // Verificar elementos
+            for(int j = i+1; j<longitud; j++) { // Manejar el segundo indice
+                suma = numeros.get(i) + numeros.get(j);
+                if(suma==objetivo) {
+                    resultado.add(i);
+                    resultado.add(j);
+                }
+            }
+        }
+        return resultado; // No se encontro solucion
+    }
+
+    public static Integer reverseInteger(Number numero) {
+        String n = numero.toString();
+        StringBuilder sb = new StringBuilder();
+
+        if(n.charAt(0)=='-') {
+            sb.append("-");
+            for(int i = n.length()-1; i>0; i--) { // Ivertir cadena
+                sb.append(n.charAt(i));
+            }
+        } else {
+            for(int i = n.length()-1; i>-1; i--) { // Ivertir cadena
+                sb.append(n.charAt(i));
+            }
+        }
+        n = sb.toString();
+
+        try {
+            return Integer.parseInt(n);
+        } catch (Exception e) {
+            return 0;
+        }
+
+    }
+
 
 
     public static void main(String[] args) {
-        List res = serieFibonacci(11);
-        int sum = sumaNaturales(5);
-        System.out.println(sum);
+        //List res = serieFibonacci(11);
+        //int sum = sumaNaturales(5);
+        //System.out.println(sum);
+        
+        //List numeros = new ArrayList<>(Arrays.asList(2,7,11,15));
+        //List resultado = twoSum(numeros, 9);
+        //System.out.println("resultado = " + resultado);
+        
+        Number num = 2147483647;
+        int res = reverseInteger(num);
+        System.out.println("res = " + res);
     }
 }
