@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Navigate to="/tasks" />} /> {/* Indica a que ruta se redirecciona al visitar el inicio, esto es opcional dependiendo del proyecto */}
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/tasks-create" element={<TasksFormPage />} />
+        <Route path="/tasks/:id" element={<TasksFormPage />} />
       </Routes>
 
     </BrowserRouter>
