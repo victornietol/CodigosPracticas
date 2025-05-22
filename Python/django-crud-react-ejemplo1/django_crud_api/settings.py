@@ -129,7 +129,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Indica quien se va a poder conectar o comunicar (cors authorization)
 CORS_ALLOWED_ORIGINS = [
-    
+    "http://localhost:5173",
 ]
 
 # Auto documentacion
