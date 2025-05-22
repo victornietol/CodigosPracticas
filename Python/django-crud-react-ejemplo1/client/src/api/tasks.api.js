@@ -12,3 +12,6 @@ export const getAllTasks = () => tasksApi.get("/");
 
 // Enviar datos
 export const createTask = (task) => tasksApi.post("/", task);
+
+// Eliminar datos (por su id)
+export const deleteTask = (id) => tasksApi.delete(`/${id}`);
