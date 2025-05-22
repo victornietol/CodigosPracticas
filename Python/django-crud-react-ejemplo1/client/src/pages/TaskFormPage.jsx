@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { createTask } from '../api/tasks.api';
-import { useNavigate } from 'react-router-dom';
+import { createTask, deleteTask } from '../api/tasks.api';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export function TasksFormPage() {
 
     const { register, handleSubmit, formState: { errors } } = useForm(); {/* Manejar formulario (registra campos y hacer validaciones) */}
     const navigate = useNavigate(); {/* Navegador para indicar que hacer al guardar los datos */}
-
+    const params = useParams();  // Obtener parametros de la url (id en este caso)
 
     const onSubmit = handleSubmit(async data => { // Funcion para guardar los datos introducidos en el formulario
         await createTask(data);
@@ -32,6 +32,14 @@ export function TasksFormPage() {
 
                 <button>Guardar</button>
             </form>
+
+            {params.id && <button onClick={async () => {
+                const confirm = window.confirm("¿Estas seguro?");
+                if (confirm) {
+                    await deleteTask(params.id);
+                    navigate("/tasks")
+                }
+            }} >Eliminar</button>}
         </div>
     );
 }
