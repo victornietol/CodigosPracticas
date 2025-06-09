@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="obtenerUbicaciones.js"></script>
+</head>
+<body>
+    <h1>Ubicacion</h1>
+    <div>
+        <h2>Mi Ubicacion</h2>
+        <button onclick="getMyLocation()">Obtener ubiacación</button>
+        <p id="mi_ubicacion"></p>
+    </div>
+    <div>
+        <h2>Obtener coordenadas</h2>
+        <textarea name="buscar_ubicacion" id="buscar_ubicacion" rows="5" placeholder="Ingresa la ubicacion"></textarea>
+        <button onclick="getLocation()">Obtener ubicacion</button>
+        <span>
+            <p style="font-weight: bold;">Latitud: </p>
+            <p id="latitud"></p>
+        </span>
+        <span>
+            <p style="font-weight: bold;">Longitud: </p>
+            <p id="longitud"></p>
+        </span>
+    </div>
+</body>
+</html>
