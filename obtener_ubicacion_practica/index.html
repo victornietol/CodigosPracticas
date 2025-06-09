@@ -10,7 +10,7 @@
     <h1>Ubicacion</h1>
     <div>
         <h2>Mi Ubicacion</h2>
-        <button onclick="getMyLocation()">Obtener ubiacación</button>
+        <button onclick="showMyLocation()">Obtener ubicación</button>
         <p id="mi_ubicacion"></p>
     </div>
     <div>
@@ -24,6 +24,16 @@
         <span>
             <p style="font-weight: bold;">Longitud: </p>
             <p id="longitud"></p>
+        </span>
+    </div>
+    <div>
+        <h2>Comparar distancia respeto a mi ubicacion</h2>
+        <textarea id="comparar_ubicacion_1" rows="5" placeholder="Ingresa la ubicacion 1"></textarea>
+        <textarea id="comparar_ubicacion_2" rows="5" placeholder="Ingresa la ubicacion 2"></textarea>
+        <button onclick="compareLocation()">Comparar ubicacion</button>
+        <span>
+            <p style="font-weight: bold;">Resultado: </p>
+            <p id="resultado_comparacion"></p>
         </span>
     </div>
 </body>
