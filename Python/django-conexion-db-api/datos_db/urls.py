@@ -6,6 +6,7 @@ router = routers.DefaultRouter()
 router.register(r"productores", views.ProductorView, "productores")
 router.register(r"transportistas", views.TransportistaView, "transportistas")
 router.register(r"entidades", views.EntidadView, "entidades")
+router.register(r"suministrador", views.SuministradorView, "suministrador")
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),

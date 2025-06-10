@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Productor, Transportista, Entidades # Tablas a mostrar
+from .models import Productor, Transportista, Entidades, Suministrador # Tablas a mostrar
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,4 +20,9 @@ class TransportistaSerializer(serializers.ModelSerializer):
 class EntidadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Entidades
+        fields = "__all__"
+
+class SuministradorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Suministrador
         fields = "__all__"

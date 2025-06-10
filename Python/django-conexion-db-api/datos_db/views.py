@@ -4,7 +4,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action, api_view
 from django.shortcuts import get_object_or_404
 from .serializer import *
-from .models import Productor, Transportista, Entidades
+from .models import Productor, Transportista, Entidades, Suministrador
 
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -62,7 +62,6 @@ class ProductorView(viewsets.ModelViewSet):
         authentication_classes=[TokenAuthentication],  # Si hay un action entonces estos decoradores se pasan como parametros en el action 
         permission_classes=[IsAuthenticated]
     )
-    
     def search_by_prod_max(self, request, cantidad=None):
         try:
             cantidad = float(cantidad)
@@ -99,6 +98,44 @@ class EntidadView(viewsets.ReadOnlyModelViewSet):
                 status=status.HTTP_404_NOT_FOUND
             )
         serializer = self.get_serializer(element, many=True)
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+    
+
+class SuministradorView(viewsets.ModelViewSet):
+    serializer_class = SuministradorSerializer
+    queryset = Suministrador.objects.all()
+
+    @action(detail=False, methods=['put'], url_path="update_nombre")
+    def suministrador_actualizar(self, request): # Si no se especifica url_path entonces se utiliza el nombre de la funcion como endpoint
+        pk = request.data.get("id_suministrador") # Nombre del campo de la pk en la BD
+        nombre = request.data.get("nombre") # Campo a actualizar
+
+        if not pk:
+            return Response(
+                {"Error": "Falta el campo id_suministrador"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        if not nombre:
+            return Response(
+                {"Error": "Falta el campo a actualizar 'nombre'"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            suministrador = Suministrador.objects.get(id_suministrador=pk)
+        except Suministrador.DoesNotExist:
+            return Response(
+                {"Error": "Suministrador no encontrado, verifica el el campo id"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        suministrador.nombre = nombre
+        suministrador.save() # el nombre en la base de datos se pasara automatimante a mayusculas porque la BD tiene un trigger defino desde sql para ello
+        serializer = SuministradorSerializer(instance=suministrador) # Se pasa el objeto del Modelo correspondiente
         return Response(
             serializer.data,
             status=status.HTTP_200_OK
