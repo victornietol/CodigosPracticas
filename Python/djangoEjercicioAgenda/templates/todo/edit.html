@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 
-{% block title %} Crear tarea {% endblock %}
+{% block title %} Editar tarea {% endblock %}
 
 {% block styles %}
     {% load static %}
@@ -19,7 +19,7 @@
     <span class="aux-btns-form">
         <a href="{% url 'todo' %}">Volver atras</a>
     </span>
-    <form action="{% url 'todo_create' %}" method="POST">
+    <form action="{% url 'todo_edit' id=id %}" method="POST">
         {% csrf_token %}
         <table>
             {{ form.as_table }}
