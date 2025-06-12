@@ -1,0 +1,28 @@
+:root {
+    --color-primary: #2ea3f2;
+    --color-text: #666;
+    --font-main: SuperAdorable;
+    --font-text: Roboto-Regular;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-text);
+    color: var(--color-text);
+}
+
+@font-face {
+    font-family: SuperAdorable;
+    src: url('../fonts/SuperAdorable.ttf');
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-main);
+}
