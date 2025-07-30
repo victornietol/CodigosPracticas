@@ -11,7 +11,8 @@ public class Main {
         System.out.println("---- Lista sin ordenar ----");
         System.out.println(list);
 
-        BubbleSort.sort(list);
+        //BubbleSort.sort(list);
+        InsertionSort.sort(list);
         System.out.println("---- Lista ordenada ----");
         System.out.println(list);
     }
