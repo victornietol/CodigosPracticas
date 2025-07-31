@@ -12,7 +12,10 @@ public class Main {
         System.out.println(list);
 
         //BubbleSort.sort(list);
-        InsertionSort.sort(list);
+        //InsertionSort.sort(list);
+        //SelectionSort.order(list);
+        //MergeSort.sort(list);
+        QuickSort.sort(list, 0, list.size()-1);
         System.out.println("---- Lista ordenada ----");
         System.out.println(list);
     }
