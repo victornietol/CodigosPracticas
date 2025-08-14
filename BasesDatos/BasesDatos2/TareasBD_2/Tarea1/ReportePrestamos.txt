@@ -1,0 +1,15 @@
+2023-09-05,2023-11-20,Luis Ruiz Vargas,Las crónicas de Narnia,Monti Hedditeh Petren,Fantasía,1950-10-16,Geoffrey Bles,Niños
+2023-08-25,2023-09-30,María González Rodríguez,Harry Potter y la piedra filosofal,Gallen Lusgdin Zollie,Fantasía,1997-06-26,Bloomsbury Publishing,Niños
+2023-07-01,2023-08-15,María García López,La sombra del viento,Almeria Mitchenson Clelland,Misterio,2001-04-27,Planeta,Adultos
+2023-06-25,2023-09-15,Andrea Gómez Hernández,El gran Gatsby,Winifield Gritland Crock,Ficción,1925-04-10,Charles Scribner Sons,Adultos
+2023-05-20,2023-07-25,Ana González Fernández,Crónica de una muerte anunciada,Sofie Fashion Scullin,Ficción,1981-09-05,La Oveja Negra,Adolescentes
+2023-04-15,2023-08-15,Juan Sánchez Pérez,El código Da Vinci,Sharia Humblestone Brandon,Misterio,2003-03-18,Doubleday,Adultos
+2023-02-10,2023-04-30,Pedro Martínez Hernández,El alquimista,Brideaux Cash Trey,Novela,1988-11-25,HarperCollins,Adolescentes
+2022-12-01,2023-01-15,Pedro Martínez Gómez,Romeo y Julieta,Gaye Alexsandrov Flatte,Tragedia,1597-01-20,Thomas Cotes,Adolescentes
+2022-11-10,2023-03-10,Ana López García,Cien años de soledad,Aurthur Boyne Beatens,Ficción,1967-05-30,Editorial Sudamericana,Adultos
+2022-11-10,2023-01-20,Laura Hernández Rodríguez,Orgullo y prejuicio,Luisa Winman Joppich,Clásico,1813-01-28,T. Egerton\, Whitehall,Adultos
+2022-10-20,2023-01-05,Sofía Díaz Jiménez,1984,St. Clair Roofe Shalne,Ciencia ficción,1949-06-08,Secker & Warburg,Adultos
+2022-09-15,2022-11-25,Laura Díaz Fernández,El señor de los anillos,Borg Skypp Brooke,Fantasía,1954-07-29,George Allen & Unwin,Adolescentes
+2022-08-05,2022-10-10,Javier Suárez Pérez,El principito,Kingsmill Sheering Mose,Literatura infantil,1943-04-06,Reynal & Hitchcock,Niños
+2022-06-15,2023-05-05,Carlos Pérez Sánchez,Los juegos del hambre,Leone Slator McClaren,Ciencia ficción,2008-09-14,Scholastic Corporation,Adolescentes
+2022-06-15,2022-07-20,Diego Flores López,El nombre del viento,Patrica Routhorn Gilla,Fantasía,2007-03-27,Daw Books,Adultos
