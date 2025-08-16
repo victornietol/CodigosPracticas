@@ -49,6 +49,31 @@ class Database:
 
         return res
     
+
+    @staticmethod
+    def get_user_by_username(username):
+        '''
+        Obtener user.
+        * Return -> Password (tuple)
+        '''
+        query = "SELECT password from user where username=%s"
+        params = (username,)
+        res = []
+        try:
+            conn = Database.__open_connection()
+            cursor = conn.cursor(prepared=True)
+            cursor.execute(query, params)
+        except Exception as e:
+            print(f"Error: {e}")
+        else:
+            res = cursor.fetchone()
+        finally:
+            cursor.close()
+            Database.__close_connection(conn)
+        
+        return res
+
+
     @staticmethod
     def save_user(username, password):
         '''Guardar usuario nuevo'''
