@@ -22,6 +22,23 @@ def login():
     '''
     Iniciar sesion
     '''
+    # Leer como json
+    data = request.get_json(silent=True)
+    if data is None: # Intentar leer si viene como form
+        data = request.form.to_dict()
+    
+    if not data:
+        return jsonify({"error": "No se enviaron datos."}), 400
+    
+    username = data.get("username")
+    password = data.get("password")
+
+    code_response = op.login(username, password)
+    if code_response==200:
+        message = "Inicio de sesión exitoso."
+    elif code_response==401:
+        message = "Username o password incorrectos."
+    return jsonify({"message": message}), code_response
 
 
 @app.post("/api/v1/user/register")
