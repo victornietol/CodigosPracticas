@@ -1,5 +1,6 @@
 import mysql.connector
 import db.db_settings as db_set
+from models.User import UserModel
 
 class Database:
     @staticmethod
@@ -24,8 +25,11 @@ class Database:
 
 
     @staticmethod
-    def get_users():
-        '''Lista todos los usuarios de la db'''
+    def list_usernames():
+        '''
+        Lista todos los usuarios de la db (solo los nombres)
+        * Return -> List[str]
+        '''
 
         table = "user"
         column = "username"
@@ -51,14 +55,42 @@ class Database:
     
 
     @staticmethod
-    def get_user_by_username(username):
+    def get_users() -> list[UserModel]:
+        '''
+        Obtener lista de usuarios.
+        * Return -> List[UserModel]
+        '''
+        query = "SELECT * FROM user"
+        usersModels = None
+        try:
+            conn = Database.__open_connection()
+            cursor = conn.cursor()
+            cursor.execute(query)
+        except Exception as e:
+            print(f"Error: {e}")
+        else:
+            users = cursor.fetchall()
+            usersModels = []
+            for user in users:
+                userModel = UserModel(username = user[1], password = user[2])
+                userModel.id = user[0]
+                usersModels.append(userModel)
+        finally:
+            cursor.close()
+            Database.__close_connection(conn)
+
+        return usersModels
+    
+
+    @staticmethod
+    def get_user_by_username(username) -> UserModel:
         '''
         Obtener user.
-        * Return -> Password (tuple)
+        * Return -> UserModel
         '''
-        query = "SELECT password from user where username=%s"
+        query = "SELECT * from user where username=%s"
         params = (username,)
-        res = []
+        userModel = None
         try:
             conn = Database.__open_connection()
             cursor = conn.cursor(prepared=True)
@@ -66,19 +98,22 @@ class Database:
         except Exception as e:
             print(f"Error: {e}")
         else:
-            res = cursor.fetchone()
+            user = cursor.fetchone()
+            if user is not None:
+                userModel = UserModel(username=user[1], password=user[2])
+                userModel.id = user[0]
         finally:
             cursor.close()
             Database.__close_connection(conn)
         
-        return res
+        return userModel
 
 
     @staticmethod
-    def save_user(username, password):
+    def save_user(user: UserModel):
         '''Guardar usuario nuevo'''
         query = "INSERT INTO user (username, password) values (%s, %s)"
-        params = (username, password)
+        params = (user.username, user.password)
         code_response = 400
         try:
             conn = Database.__open_connection()
