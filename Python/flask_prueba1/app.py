@@ -1,20 +1,32 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import operations as op
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET'])
+# HTML
+@app.route("/")
 def index():
-    return jsonify({"status":"ok"}), 200
+    return render_template("index.html")
 
 
+
+
+# API
 @app.get("/api/v1/user/list")
 def list_users():
     '''
     Listar usuarios
     '''
-    users = op.get_users()
+    users = op.list_usernames()
     return jsonify(users), 200
+
+@app.get("/api/v1/users")
+def get_users():
+    '''Obtener usuarios'''
+    users = op.get_users()
+    if users is not None:
+        return jsonify(users), 200
+    return jsonify({"message": "Error en la consulta"}, 400)
 
 
 @app.post("/api/v1/user/login")
