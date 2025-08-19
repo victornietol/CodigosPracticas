@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Iniciar sesión {% endblock %}
+
+{% block content %}
+
+<section class="card card-body justify-content-center align-items-center">
+    <h1>Iniciar sesión</h1>
+
+    <form class="w-100" method="post" action="{{ url_for('login_template') }}">
+        {# Username #}
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Nombre de usuario">
+            <label for="inputUsername">Nombre de usuario</label>
+        </div>
+
+        {# Password #}
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Contraseña">
+            <label for="inputPassword">Contraseña</label>
+        </div>
+
+        <button type="submit" class="btn btn-login-custom w-100 mb-3">Ingresar</button>
+
+        {% if message %}
+            <p class="message-error text-center">{{ message }}</p>
+        {% endif %}
+        
+        <p>
+            ¿No tienes cuenta?
+            <a href="{{ url_for('register_template') }}" target="_blank" rel="noopener noreferrer">Registrate</a>
+        </p>
+
+    </form>
+</section>
+
+{% endblock %}
