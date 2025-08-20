@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, request, render_template, session, redirect, url_for
+from flask_wtf import CSRFProtect
 import operations as op
 from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "clave_prueba_secreta"
+csrf = CSRFProtect(app)
 
 def login_logic(username, password):
     code_response = op.login(username, password)
@@ -11,6 +13,17 @@ def login_logic(username, password):
         return {"message": "Inicio de sesión exitoso."}, code_response
     elif code_response == 401:
         return {"message": "Username o password incorrectos."}, code_response
+    
+def register_logic(username, password):
+    print(password)
+    code_response = op.create_user(username, password)
+    if code_response == 201:
+        message = "Usuario creado con exito."
+    elif code_response == 409:
+        message = "El username ya existe."
+    elif code_response == 400:
+        message = "Ocurrio un error en operations.py"
+    return {"message": message}, code_response
     
 # Decoradores para verificar inicio de session
 def login_required(function):
@@ -20,6 +33,15 @@ def login_required(function):
             return redirect(url_for("login_template"))
         return function(*args, **kwargs)
     return decorated_function
+
+def already_login(function):
+    @wraps(function)
+    def decorated_function(*args, **kwargs):
+        if "username" in session:
+            return redirect(url_for("index"))
+        return function(*args, **kwargs)
+    return decorated_function
+
 
 
 
@@ -32,6 +54,7 @@ def index():
 
 
 @app.route("/login", methods=["GET", "POST"])
+@already_login # Verificar que no este ya logueado
 def login_template():
     if request.method == "GET":
         render = render_template("login.html")
@@ -49,9 +72,32 @@ def login_template():
     return render
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
+@already_login
 def register_template():
-    return render_template("register.html")
+    if request.method == "GET":
+        render = render_template("register.html")
+
+    elif request.method == "POST":
+        username = request.form.get("username")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+        if password1!=password2:
+            render = render_template("register.html", message_error="Las contraseñas no coinciden.")
+        else:
+            response, code_status = register_logic(username, password1)
+            if code_status == 201:
+                render = render_template("register.html", modal="1", message=response.get("message"))
+            else:
+                render = render_template("register.html", message_error=response.get("message"))
+
+    return render
+
+@app.route("/logout", )
+@login_required
+def logout_template():
+    session.clear()
+    return redirect(url_for("login_template"))
 
 
 
