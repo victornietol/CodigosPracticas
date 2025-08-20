@@ -4,10 +4,12 @@
 
 {% block content %}
 
-<section class="card card-body justify-content-center align-items-center">
-    <h1>Iniciar sesión</h1>
+<section class="card card-body col-12 col-sm-12 col-md-6 mx-auto bg-light justify-content-center align-items-center">
+    <h1 class="my-4">Iniciar sesión</h1>
 
-    <form class="w-100" method="post" action="{{ url_for('login_template') }}">
+    <form class="w-100 mb-4" method="post" action="{{ url_for('login_template') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
         {# Username #}
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Nombre de usuario">
@@ -25,13 +27,13 @@
         {% if message %}
             <p class="message-error text-center">{{ message }}</p>
         {% endif %}
-        
-        <p>
-            ¿No tienes cuenta?
-            <a href="{{ url_for('register_template') }}" target="_blank" rel="noopener noreferrer">Registrate</a>
-        </p>
-
     </form>
+
+    <p class="text-center">
+        ¿No tienes cuenta?
+        <a href="{{ url_for('register_template') }}" target="_blank" rel="noopener noreferrer">Registrate</a>
+    </p>
+    
 </section>
 
 {% endblock %}

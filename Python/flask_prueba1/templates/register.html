@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Registrarse {% endblock %}
+
+{% block content %}
+<section class="card card-body col-12 col-sm-12 col-md-6 mx-auto bg-light justify-content-center align-items-center">
+    <h1 class="my-4">Nuevo usuario</h1>
+
+    <form class="w-100 mb-4" method="post" action="{{ url_for('register_template') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        {# Username #}
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Nombre de usuario">
+            <label for="inputUsername">Nombre de usuario</label>
+        </div>
+
+        {# Password #}
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="inputPassword" name="password1" placeholder="Contraseña">
+            <label for="inputPassword">Contraseña</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="inputPassword" name="password2" placeholder="Introduce nuevamente la contraseña">
+            <label for="inputPassword">Introduce nuevamente la contraseña</label>
+        </div>
+
+        <button type="submit" class="btn btn-login-custom w-100 mb-3">Registrar</button>
+
+        {% if message_error %}
+            <p class="message-error text-center">{{ message_error }}</p>
+        {% endif %}
+    </form>
+
+    <p class="text-center">
+        ¿Ya tienes cuenta?
+        <a href="{{ url_for('login_template') }}" target="_blank" rel="noopener noreferrer">Inicia sesión</a>
+    </p>
+
+    {% if modal %}
+        <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="titleModal">{{ message }}</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="text-center" href="{{ url_for('login_template') }}">
+                            <button type="button" class="btn btn-login-custom">Aceptar</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</section>
+{% endblock %}
+
+{% if modal %}
+    {% block script %}
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = new bootstrap.Modal(document.getElementById('messageModal'));
+            modal.show();
+        });
+        </script>
+    {% endblock %}
+{% endif %}
