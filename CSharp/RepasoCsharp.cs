@@ -96,6 +96,24 @@ void Some2(Func<int, int, int> fn, int number)
 
 
 
+// LINQ
+string[] namesLINQ =
+{
+    "Javier", "Hector", "David", "Susana", "Ana"
+};
+var namesResult = from n in namesLINQ
+                  where n.Length > 3
+                  orderby n descending
+                  select n;
+var namesResult2 = namesLINQ.Where(n=> n.Length > 3)
+                            .OrderByDescending(n => n)
+                            .Select(d=>d);
+foreach(var name in namesResult)
+{
+    Console.WriteLine(name);
+}
+
+
 
 // Clase que implementa interfaces
 class Sale : INumber, ISave
