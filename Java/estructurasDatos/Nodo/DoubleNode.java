@@ -38,9 +38,9 @@ public class DoubleNode<T> {
     @Override
     public String toString() {
         return "DoubleNode{" +
-                "prev=" + prev.getContent() +
+                "prev=" + (prev==null ? null :  prev.getContent()) +
                 ", content=" + content +
-                ", next=" + next.getContent() +
+                ", next=" + (next==null ? null : next.getContent()) +
                 '}';
     }
 }

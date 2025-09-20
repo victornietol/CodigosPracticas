@@ -5,14 +5,13 @@ import org.example.estructurasDatos.Nodo.Node;
 
 public class Main {
     public static void main(String[] args) {
+
+        // Lista ligada simple
         Node<Integer> n1 = new Node<>(1);
         Node<String> n2 = new Node<>("Dos");
         Node<Double> n3 = new Node<>(3.5);
         Node<Prueba4> n4 = new Node<>(new Prueba4("Soy 4to"));
         Node<Integer> n5 = new Node<>(5);
-
-        DoubleNode<Integer> dn1 = new DoubleNode<>(1);
-
 
         SimpleLinkedList simpleLinkedList = new SimpleLinkedList<>(0);
         simpleLinkedList.insertFist(n1);
@@ -28,7 +27,28 @@ public class Main {
         System.out.println(simpleLinkedList);
         simpleLinkedList.deleteElement(n1);
         simpleLinkedList.deleteElement(5);
+        simpleLinkedList.insertLast(20);
+        simpleLinkedList.insertFist(-1);
+        simpleLinkedList.insertInPosition(1, 11);
         System.out.println(simpleLinkedList);
+
+
+        // Lista doblemente ligada
+        DoubleLinkedList dll = new DoubleLinkedList(1);
+        dll.insertLast(2);
+        DoubleNode<Integer> dn3 = new DoubleNode<>(3);
+        dll.insertLast(dn3);
+        dll.insertFist(0);
+        System.out.println(dll);
+        dll.insertInPosition(10, 10);
+        dll.insertInPosition(0, -1);
+        System.out.println(dll);
+        dll.insertInPosition(3, 1.5);
+        dll.insertInPosition(6, 9);
+        System.out.println(dll);
+        System.out.println(dll.length());
+        
+
     }
 }
 

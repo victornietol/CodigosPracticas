@@ -6,7 +6,7 @@ public class SimpleLinkedList<T> implements Insert, Delete {
 
     private Node<T> head;
 
-    public SimpleLinkedList(T element){
+    public SimpleLinkedList(T element) {
         this.head = new Node<>(element);
     }
 
