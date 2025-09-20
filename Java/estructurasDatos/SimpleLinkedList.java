@@ -107,8 +107,13 @@ public class SimpleLinkedList<T> implements Insert, Delete {
             nodeC.setNext(this.head);
             this.head = nodeC;
             return node;
+        } else {
+            Node nodeI = new Node<>(node);
+            nodeI.setNext(this.head);
+            this.head = nodeI;
+            return nodeI;
         }
-        return null;
+        //return null;
     }
 
     @Override
@@ -130,14 +135,28 @@ public class SimpleLinkedList<T> implements Insert, Delete {
                 currNode = currNode.getNext();
             }
             return node;
+
+        } else {
+            boolean inserted = false;
+            Node currNode = this.head;
+            while (!inserted) {
+                if (currNode.getNext()==null) {
+                    currNode.setNext(new Node<>(node));
+                    inserted = true;
+                }
+                currNode = currNode.getNext();
+            }
+            return node;
         }
-        return null;
+
+        //return null;
     }
 
     @Override
     public Object insertInPosition(int position, Object node) {
-        if (position>=0 && node instanceof Node) {
-            Node<T> nodeC = (Node<T>) node;
+        if (position>=0) {
+
+            Node nodeC = node instanceof Node ? (Node<T>) node : new Node<>(node);
 
             if (position==0 || this.head==null) {
                 insertFist(nodeC);
