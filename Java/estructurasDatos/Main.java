@@ -18,7 +18,16 @@ public class Main {
         simpleLinkedList.insertFist(n1);
         simpleLinkedList.insertFist(n2);
         simpleLinkedList.insertLast(n3);
-        simpleLinkedList.insertInPosition(5,n4);
+        simpleLinkedList.insertInPosition(2,n4);
+        System.out.println(simpleLinkedList);
+        simpleLinkedList.deleteFirst();
+        System.out.println(simpleLinkedList);
+        simpleLinkedList.insertInPosition(10,n5);
+        System.out.println(simpleLinkedList);
+        simpleLinkedList.deletePosition(2);
+        System.out.println(simpleLinkedList);
+        simpleLinkedList.deleteElement(n1);
+        simpleLinkedList.deleteElement(5);
         System.out.println(simpleLinkedList);
     }
 }
