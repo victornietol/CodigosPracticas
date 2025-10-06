@@ -1,0 +1,5 @@
+NAME = "paises"
+USER = "root"
+PASSWORD = "virgo971000"
+HOST = "127.0.0.1"
+PORT = "3306"
