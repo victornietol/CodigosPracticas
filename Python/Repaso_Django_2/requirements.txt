@@ -1,0 +1,11 @@
+asgiref==3.10.0
+cffi==1.17.0
+Django==5.2.7
+djangorestframework==3.16.1
+greenlet==0.4.13
+hpy==0.9.0
+mysql-connector-python==9.4.0
+readline==6.2.4.1
+sqlparse==0.5.3
+typing_extensions==4.15.0
+tzdata==2025.2
