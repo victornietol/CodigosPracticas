@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Onu(models.Model):
-    pais = models.CharField(db_column='PAIS', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    pais = models.CharField(db_column='PAIS', max_length=50, blank=True, primary_key=True)  # Field name made lowercase.
     continente = models.CharField(db_column='CONTINENTE', max_length=30, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -18,7 +18,7 @@ class Onu(models.Model):
 
 
 class Pais(models.Model):
-    pais = models.CharField(db_column='PAIS', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    pais = models.CharField(db_column='PAIS', max_length=50, blank=True, primary_key=True)  # Field name made lowercase.
     atletas = models.IntegerField(db_column='ATLETAS', blank=True, null=True)  # Field name made lowercase.
     oro = models.IntegerField(db_column='ORO', blank=True, null=True)  # Field name made lowercase.
     plata = models.IntegerField(db_column='PLATA', blank=True, null=True)  # Field name made lowercase.
