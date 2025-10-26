@@ -9,4 +9,4 @@ class ReptilCreate(ReptilBase):
 class ReptilResponse(ReptilBase):
     id: int
     class Config:
-        orm_mode = True # Permite devolver objetos SQLAlchemy como respuesta
+        from_attributes = True # Permite devolver objetos SQLAlchemy como respuesta

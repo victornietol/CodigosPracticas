@@ -9,4 +9,4 @@ class MamiferoCreate(MamiferoBase):
 class MamiferoResponse(MamiferoBase):
     id: int
     class Config:
-        orm_mode = True # Permite devolver objetos SQLAlchemy como respuesta
+        from_attributes = True # Permite devolver objetos SQLAlchemy como respuesta

@@ -9,4 +9,4 @@ class AveCreate(AveBase):
 class AveResponse(AveBase):
     id: int
     class Config:
-        orm_mode = True # Permite devolver objetos SQLAlchemy como respuesta
+        from_attributes = True # Permite devolver objetos SQLAlchemy como respuesta
