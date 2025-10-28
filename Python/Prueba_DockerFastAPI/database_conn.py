@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 #
 # El contenedor de la BD es mysql_docker_1:3306   , en este caso se debe indicar el 
 # puerto del contenedor docker y no el puerto del host
-DATABASE_URL = "mysql+pymysql://root:1234@mysql_docker_1:3306/animals"
+DATABASE_URL = "mysql+pymysql://root:1234@mysql_animals_2:3306/animals"
 
 engine = create_engine(DATABASE_URL, echo=True)
 

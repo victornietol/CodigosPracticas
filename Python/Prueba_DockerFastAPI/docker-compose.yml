@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  mysql_animals_2:
+    image: mysql:latest
+    container_name: mysql_animals_2
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    networks:
+      - network_animals_prueba
+  fastapi_animals_2:
+    build: .
+    container_name: fastapi_animals_2
+    ports:
+      - "8000:8000"
+    links:
+      - mysql_animals_2
+    depends_on:
+      - mysql_animals_2
+    networks:
+      - network_animals_prueba
+
+networks:
+  network_animals_prueba:
+    driver: bridge
