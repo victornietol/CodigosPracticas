@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  mysql_animals_volumes:
+    image: mysql:latest
+    container_name: mysql_animals_volumes
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    networks:
+      - network_animals_prueba_volumes
+
+  fastapi_animals_volumes:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: fastapi_animals_volumes
+    ports:
+      - "8000:8000"
+    links:
+      - mysql_animals_volumes
+    volumes:
+      - .:/home/
+    depends_on:
+      - mysql_animals_volumes
+    networks:
+      - network_animals_prueba_volumes
+
+networks:
+  network_animals_prueba_volumes:
+    driver: bridge
