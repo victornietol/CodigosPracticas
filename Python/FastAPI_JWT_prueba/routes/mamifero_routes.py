@@ -2,12 +2,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from database_conn import get_db
 
+from auth.auth_bearer import JWTBearer # JWT
 from schemas.mamifero_schema import MamiferoCreate, MamiferoResponse
 from repositories import mamifero_repository
 
 router = APIRouter(prefix="/mamiferos", tags=["Mamiferos"])
 
-@router.get("/", response_model=list[MamiferoResponse])
+# Endpoint protegido con jwt
+@router.get("/", response_model=list[MamiferoResponse], dependencies=[Depends(JWTBearer())])
 def get_mamiferos(db: Session = Depends(get_db)):
     return mamifero_repository.get_all(db)
 
