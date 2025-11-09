@@ -19,7 +19,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseWelcomePage(); // custom middleware
+//app.UseWelcomePage(); // custom middleware
+
+app.UseTimeMiddleware(); // custom
 
 app.MapControllers();
 
