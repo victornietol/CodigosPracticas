@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "26Cl7Yce7x4=",
+  "success": true,
+  "projectFilePath": "C:\\Victor\\CodigosGenerales\\CSharp\\curso_CSharp1\\ejemplo_api_2\\ejemplo_api_2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nieto\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "C:\\Users\\nieto\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
