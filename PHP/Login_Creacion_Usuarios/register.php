@@ -27,8 +27,13 @@ if(isset($_SESSION['mensaje_verificacion'])) {
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
+
+    <header class="header-custom">
+        <p>&#9888; Este sitio es un proyecto con fines exclusivamente académicos, por lo tanto, no se recopilan ni utilizan credenciales reales. Por favor <strong>no introduzca contraseñas ni usuarios</strong> utilizados o asociados a otros servicios web, esto con el fin de proteger la integridad de sus credenciales. Se le recomienda utilizar datos ficticios únicamente con fines de prueba. &#9888;</p>
+    </header>
     
-    <div class="wrapper">
+    <main class="main-content">
+        <div class="wrapper">
         <form action="./new_user.php" method="post">
             <h2>Nuevo Usuario</h2>
             <div class="input-field">
@@ -75,6 +80,7 @@ if(isset($_SESSION['mensaje_verificacion'])) {
     
         </form>
     </div>
+    </main>
 
 </body>
 </html>

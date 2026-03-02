@@ -40,50 +40,56 @@ if(isset($_SESSION['connected'])) {
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
-    
-    <div class="wrapper">
-        <form action="./login.php" method="post">
-            <h2>Bienvenido</h2>
-            <div class="input-field">
-                <input type="text" name="txtUsuario" required>
-                <label>Ingresa tu usuario</label>
-            </div>
-    
-            <div class="input-field">
-                <input type="password" name="txtPassword" required>
-                <label>Ingresa tu password</label>
-            </div>
 
-            <div>
-                <label>
-                    <?php // Mensaje de error al iniciar sesion
-                        echo htmlspecialchars($mensaje_verificacion);
-                    ?>
-                </label>
-            </div>
+    <header class="header-custom">
+        <p>&#9888; Este sitio es un proyecto con fines exclusivamente académicos, por lo tanto, no se recopilan ni utilizan credenciales reales. Por favor <strong>no introduzca contraseñas ni usuarios</strong> utilizados o asociados a otros servicios web, esto con el fin de proteger la integridad de sus credenciales. Se le recomienda utilizar datos ficticios únicamente con fines de prueba. &#9888;</p>
+    </header>
     
-            <div class="forget">
-                <label for="remember">
-                    <input type="checkbox" id="remember" name="check_remember">
-                    <p>Recuerdame</p>
-                </label>
-            </div>
-    
-            <button type="submit">Ingresar</button>
-    
-            <div class="register">
-                <p>
-                    No tengo cuenta
-                    <?php  
-                        session_unset(); // Eliminar variables de sesion
-                        session_destroy(); // Destriur sesion
-                    ?>
-                    <a href="./register.php">Registrarse</a>
-                </p>
-            </div>
-    
-        </form>
-    </div>
+    <main class="main-content">
+        <div class="wrapper">
+            <form action="./login.php" method="post">
+                <h2>Bienvenido</h2>
+                <div class="input-field">
+                    <input type="text" name="txtUsuario" required>
+                    <label>Ingresa tu usuario</label>
+                </div>
+        
+                <div class="input-field">
+                    <input type="password" name="txtPassword" required>
+                    <label>Ingresa tu password</label>
+                </div>
+
+                <div>
+                    <label>
+                        <?php // Mensaje de error al iniciar sesion
+                            echo htmlspecialchars($mensaje_verificacion);
+                        ?>
+                    </label>
+                </div>
+        
+                <div class="forget">
+                    <label for="remember">
+                        <input type="checkbox" id="remember" name="check_remember">
+                        <p>Recuerdame</p>
+                    </label>
+                </div>
+        
+                <button type="submit">Ingresar</button>
+        
+                <div class="register">
+                    <p>
+                        No tengo cuenta
+                        <?php  
+                            session_unset(); // Eliminar variables de sesion
+                            session_destroy(); // Destriur sesion
+                        ?>
+                        <a href="./register.php">Registrarse</a>
+                    </p>
+                </div>
+        
+            </form>
+        </div>
+    </main>
 
 </body>
 </html>
