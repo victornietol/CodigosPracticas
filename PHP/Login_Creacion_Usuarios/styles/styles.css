@@ -8,26 +8,47 @@
 body {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    min-height: 100dvh;
     padding: 0 10px;
     color: white;
+    margin: 0;
+    background: url("../img/fondo.png") center / cover no-repeat,
+                #02003d;
 }
 
-body::before {
-    content: "";
-    position: absolute;
+.header-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    background: url("../img/fondo.png"), #02003d;
-    background-position: center;
-    background-size: cover;
-    z-index: -1;
+    
+    background: #222;
+    
+    display: flex;
+    align-items: center;
+    
+    padding: 12px 30px;
+    text-align: center;
+
+    z-index: 1000;
+}
+
+.main-content {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px
 }
 
 .wrapper {
-    width: 490px;
+    width: 100%;
+    max-width: 490px;
     border-radius: 8px;
     padding: 30px;
     text-align: center;
@@ -140,3 +161,15 @@ button {
     padding-left: 100px;
     padding-right: 100px;
 }
+
+/*
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+*/
