@@ -20,12 +20,12 @@ public class DetalleVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     private Venta venta;
+
     @ManyToOne
     private Producto producto;
-
     private Integer unitsProd;
     private Double price;
 }

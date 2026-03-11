@@ -1,19 +1,16 @@
 package com.ejercicioBasicoSpring.EjercicioPruebaTecnica.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Venta {
 
     @Id
@@ -21,7 +18,11 @@ public class Venta {
     private Long id;
     private LocalDate date;
     private String status;
+    private Double total;
 
     @ManyToOne // define la relacion
     private Sucursal sucursal;
+
+    @OneToMany(mappedBy = "venta") // atributo perteneciente a con quien hace relacion
+    private List<DetalleVenta> detail = new ArrayList<>();
 }
