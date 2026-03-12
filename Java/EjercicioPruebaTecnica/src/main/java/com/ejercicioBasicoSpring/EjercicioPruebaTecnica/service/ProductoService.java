@@ -5,7 +5,9 @@ import com.ejercicioBasicoSpring.EjercicioPruebaTecnica.exception.NotFoundExcept
 import com.ejercicioBasicoSpring.EjercicioPruebaTecnica.mapper.Mapper;
 import com.ejercicioBasicoSpring.EjercicioPruebaTecnica.model.Producto;
 import com.ejercicioBasicoSpring.EjercicioPruebaTecnica.repository.ProductoRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,19 +26,27 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
+    public ProductoDTO getById(Long id) {
+         Producto p = repository.findById(id)
+                 .orElseThrow(() -> new NotFoundException("Producto no encontrado"));
+         return Mapper.toDTO(p);
+    }
+
+    @Override
     public ProductoDTO createProducto(ProductoDTO productoDTO) {
+        System.out.println("UNIIIITS DTO: " + productoDTO.getUnits());
         Producto prod = Producto.builder()
                 .name(productoDTO.getName())
                 .category(productoDTO.getCategory())
                 .price(productoDTO.getPrice())
                 .units(productoDTO.getUnits())
                 .build();
-
+        System.out.println("UNIIIITS PROD: " + prod.getUnits());
         return Mapper.toDTO(repository.save(prod));
     }
 
     @Override
-    public ProductoDTO updateProducto(Long id, ProductoDTO productoDTO) {
+    public ProductoDTO updateCompleteProducto(Long id, ProductoDTO productoDTO) {
         // verificar que exista el producto
         Producto prod = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Producto no encontrado")); // Exception personalizada
@@ -52,7 +62,7 @@ public class ProductoService implements IProductoService {
     @Override
     public void deleteProducto(Long id) {
         if (!repository.existsById(id)) {
-            throw new NotFoundException("Producto no encontrado para eliminar")
+            throw new NotFoundException("Producto no encontrado para eliminar");
         }
 
         repository.deleteById(id);

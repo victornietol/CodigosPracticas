@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class Venta {
 
     @Id
@@ -23,6 +24,6 @@ public class Venta {
     @ManyToOne // define la relacion
     private Sucursal sucursal;
 
-    @OneToMany(mappedBy = "venta") // atributo perteneciente a con quien hace relacion
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER) // atributo perteneciente a con quien hace relacion
     private List<DetalleVenta> detail = new ArrayList<>();
 }

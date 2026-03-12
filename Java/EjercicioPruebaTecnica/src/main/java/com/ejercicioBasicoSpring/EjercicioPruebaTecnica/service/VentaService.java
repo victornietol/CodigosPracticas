@@ -34,7 +34,7 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public List<VentaDTO> getVentas(VentaDTO ventaDTO) {
+    public List<VentaDTO> getVentas() {
         List<Venta> ventas = ventaRepo.findAll();
         List<VentaDTO> ventasDTO = new ArrayList<>();
         VentaDTO dto;
@@ -72,6 +72,7 @@ public class VentaService implements IVentaService {
         // lista de detalles
         // en los detalles estan los productos
         List<DetalleVenta> details = new ArrayList<>();
+        double totalCalculated = 0.0;
         for (DetalleVentaDTO detDTO: ventaDTO.getDetail()) {
             Producto p = productoRepo.findByName(detDTO.getNameProd()).orElse(null);
             if(p == null)
@@ -84,12 +85,11 @@ public class VentaService implements IVentaService {
             detalleVenta.setVenta(venta);
 
             details.add(detalleVenta);
+            totalCalculated = totalCalculated + (detDTO.getPrice()+detDTO.getUnitsProd());
         }
         venta.setDetail(details);
 
-        ventaRepo.save(venta);
-
-        return Mapper.toDTO(venta);
+        return Mapper.toDTO(ventaRepo.save(venta));
     }
 
     @Override

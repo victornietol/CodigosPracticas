@@ -5,7 +5,7 @@ import com.ejercicioBasicoSpring.EjercicioPruebaTecnica.dto.VentaDTO;
 import java.util.List;
 
 public interface IVentaService {
-    List<VentaDTO> getVentas(VentaDTO ventaDTO);
+    List<VentaDTO> getVentas();
     VentaDTO createVenta(VentaDTO ventaDTO);
     VentaDTO updateVenta(Long id, VentaDTO ventaDTO);
     void deleteVenta(Long id);
