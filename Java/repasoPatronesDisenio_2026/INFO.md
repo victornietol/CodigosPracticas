@@ -8,5 +8,9 @@
 
 - ## Behavioral
 
-- - ### Chain of Responsability:
-    Permite pasar una solicitud a través de una cadena de objetos, donde cada objeto decide como procesarla, pasarla al siguiente o ignorarla.
+  - ### Chain of Responsability:
+      Permite pasar una solicitud a través de una cadena de objetos, donde cada objeto decide como procesarla, pasarla al siguiente o ignorarla.
+
+  - ### Observer:
+    Define una relación uno a muchos donde Un objeto (Subject) notifica automáticamente a otros objetos (Observers) cuando cambia su estado.
+    
