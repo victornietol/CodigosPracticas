@@ -14,3 +14,10 @@
   - ### Observer:
     Define una relación uno a muchos donde Un objeto (Subject) notifica automáticamente a otros objetos (Observers) cuando cambia su estado.
     
+  - ### Strategy:
+    El patrón Strategy define una familia de algoritmos, los encapsula y los hace intercambiables. Permite cambiar el comportamiento de un objeto en tiempo de ejecución sin modificar su código.
+  
+  - ### Template:
+    El patrón Template Method define el esqueleto de un algoritmo en una clase base, pero permite que las subclases redefinan ciertos pasos sin cambiar la estructura general. La clase padre controla el flujo, las hijas personalizan detalles.
+  
+  
