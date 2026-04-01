@@ -33,4 +33,11 @@
   - ### Singleton:
     Garantiza que una clase tenga una única instania y proporcione un punto global de acceso a ella. Es como un objeto único compartido en toda la aplicación.
   
+- - -
+
+- ## Structural
+
+  - ### Adaptaer:
+    permite que dos clases incompatibles trabajen juntas. Convierte la interfaz de una clase en otra que el cliente espera.
+  
   
