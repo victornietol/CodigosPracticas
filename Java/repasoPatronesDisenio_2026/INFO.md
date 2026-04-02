@@ -38,6 +38,8 @@
 - ## Structural
 
   - ### Adaptaer:
-    permite que dos clases incompatibles trabajen juntas. Convierte la interfaz de una clase en otra que el cliente espera.
+    Permite que dos clases incompatibles trabajen juntas. Convierte la interfaz de una clase en otra que el cliente espera.
   
+  - ### Decorator:
+    Permite añadir funcionalidades a un objeto dinámicamente sin modificar su clase. Es como envolver un objeto con capas adicionales de comportamiento.
   
