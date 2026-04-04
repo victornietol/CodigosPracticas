@@ -43,3 +43,8 @@
   - ### Decorator:
     Permite añadir funcionalidades a un objeto dinámicamente sin modificar su clase. Es como envolver un objeto con capas adicionales de comportamiento.
   
+  - ### Facade:
+    Proporciona una interfaz simple para un sistema complejo. Oculta la complejidad interna y expone solo lo necesario, la idea es simplificar el acceso a sistemas complejos.
+  
+  - ### Proxy:
+    El patrón Proxy proporciona un objeto sustituto que controla el acceso a otro objeto. Es un intermediario que decide cómo y cuándo se accede al objeto real, la idea es controlar el acceso a un objeto sin modificarlo
