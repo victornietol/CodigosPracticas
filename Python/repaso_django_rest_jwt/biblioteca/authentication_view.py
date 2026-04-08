@@ -21,7 +21,7 @@ class LoginView(APIView):
         refresh['role'] = user.role
 
         return Response({
-            "token": str(refresh.access_token),
+            "access_token": str(refresh.access_token),
             "refresh_token": str(refresh),
             "role": user.role
         }, status=status.HTTP_200_OK)
@@ -35,7 +35,7 @@ class RegisterView(APIView):
         if serializer.is_valid():
             user = serializer.save()
             return Response({
-                "message": "Usuario creado correctamente",
+                "message": "Usuario creado correctamente.",
                 "user": serializer.data
             }, status=status.HTTP_201_CREATED)
         
