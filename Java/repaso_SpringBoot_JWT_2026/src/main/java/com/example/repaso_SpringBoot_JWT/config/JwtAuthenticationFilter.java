@@ -29,6 +29,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
+        // ignorar si es un endpoint publico que no utiliza token
+        String path = request.getServletPath();
+        if (path.startsWith("/api/v1/auth)")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         final String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -42,6 +49,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // intenta leer el token, en caso de no ser valido se indica en request
         try {
             username = jwtService.extractUsername(jwt);
+
+            if (jwtService.isRefreshToken(jwt)) { // verificar que sea access token y no refresh token
+                request.setAttribute("jwt_error", "Invalid token type");
+                filterChain.doFilter(request, response);
+                return;
+            }
         } catch (Exception e) {
             request.setAttribute("jwt_error", "Invalid credentials");
             filterChain.doFilter(request, response);

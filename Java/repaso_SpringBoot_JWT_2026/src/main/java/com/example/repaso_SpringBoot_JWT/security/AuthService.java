@@ -28,7 +28,11 @@ public class AuthService {
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
-        user.setRole(Role.valueOf(request.getRole().toUpperCase()));
+        if (user.getRole() == null) { // asignar rol por defecto
+            user.setRole(Role.CLIENTE);
+        } else {
+            user.setRole(Role.valueOf(request.getRole().toUpperCase()));
+        }
 
         userService.create(user);
 
@@ -55,18 +59,26 @@ public class AuthService {
     }
 
     public AuthResponse refresh(String refreshToken) {
-        String username = jwtService.extractUsername(refreshToken); // aqui ya se valida la firma en JwtService
-        User user = userService.findByUsername(username);
+        try {
+            if (!jwtService.isRefreshToken(refreshToken)) {
+                throw new BadCredentialsException("Invalid token type");
+            }
 
-        // validar integridad, expiración y tipo
-        if (!jwtService.isTokenValid(refreshToken, user) || !jwtService.isRefreshToken(refreshToken)) {
+            String username = jwtService.extractUsername(refreshToken);
+            User user = userService.findByUsername(username);
+
+            if (user == null || !jwtService.isTokenValid(refreshToken, user)) {
+                throw new BadCredentialsException("Invalid or expired refresh token");
+            }
+
+            return new AuthResponse(
+                    jwtService.generateToken(user),
+                    jwtService.generateRefreshToken(user)
+            );
+
+        } catch (Exception e) {
             throw new BadCredentialsException("Invalid or expired refresh token");
         }
-
-        return new AuthResponse(
-                jwtService.generateToken(user),
-                jwtService.generateRefreshToken(user)
-        );
     }
 
 }

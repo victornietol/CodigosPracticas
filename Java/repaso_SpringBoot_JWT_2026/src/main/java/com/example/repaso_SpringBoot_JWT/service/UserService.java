@@ -22,6 +22,7 @@ public class UserService implements IUserService{
 
     @Override
     public User create(User user) {
+        user.setActive(true);
         return repository.save(user);
     }
 }

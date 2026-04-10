@@ -18,6 +18,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtFilter;
     private final JwtAuthenticationEntryPoint jwtEntryPoint;
     private final AuthenticationProvider authProvider;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,9 +35,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/libros").hasAnyRole("CLIENTE","VENDEDOR","ADMIN")
                         .anyRequest().authenticated()
                 )
-                .authenticationProvider(authProvider) /// ----------------
+                .authenticationProvider(authProvider)
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(jwtEntryPoint)
+                        .accessDeniedHandler(jwtAccessDeniedHandler)
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
