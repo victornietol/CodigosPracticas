@@ -12,7 +12,7 @@ public class TwoSum {
 
     }
 
-    static Set<List<Integer>> twoSum1(int[] array, int target) {
+    public static Set<List<Integer>> twoSum1(int[] array, int target) {
         // ENCONTRAR PARES SIN REPETIR
         HashMap<Integer, Integer> revised = new HashMap<>();
         Set<List<Integer>> pairs = new HashSet<>();
@@ -20,11 +20,11 @@ public class TwoSum {
         for (int i=0; i<array.length; i++) {
             int complement = target - array[i];
             if (revised.containsKey(complement)) {
-                if (!pairs.contains(List.of(complement, array[i])) && !pairs.contains(List.of(array[i], complement))) {
-                    pairs.add(List.of(complement, array[i]));
-                }
+                int min = Math.min(complement, array[i]);
+                int max = Math.max(complement, array[i]);
+                pairs.add(List.of(min, max)); // AGREGAR EL PAR ORDENADO PARA EVITAR DUPLICADOS AUNQUE NO ESTEN EN EL MISMO ORDEN (1,2) -> (2,1)
             }
-            revised.put(array[i], array[i]);
+            revised.put(array[i], i);
         }
         return pairs;
     }
