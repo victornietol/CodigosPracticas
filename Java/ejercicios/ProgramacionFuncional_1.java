@@ -24,5 +24,46 @@ public class ProgramacionFuncional_1 {
                 .map(duplicate)// es como hacer int res = duplicate.apply(1);  aplicando cada valor de entrada de "num"
                 .toList();
         System.out.println(num3);
+
+
+        // EJEMPLO 3
+        List<Person> people = List.of(
+                new Person("Person1", 20),
+                new Person("Person2", 21),
+                new Person("Person3", 22),
+                new Person("Person3", 23)
+        );
+
+        List<Person> filterPeople = people.stream()
+                .filter(person -> person.getAge() >= 22)
+                .sorted((p1, p2) -> p1.getName().compareTo(p2.getName()))
+                .toList();
+        System.out.println(filterPeople);
+
+    }
+}
+
+
+
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{name='" + name + "', age=" + age + "}";
     }
 }
