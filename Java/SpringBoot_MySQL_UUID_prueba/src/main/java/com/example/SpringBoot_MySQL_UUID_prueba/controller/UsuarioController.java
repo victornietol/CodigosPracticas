@@ -62,6 +62,7 @@ public class UsuarioController {
 
     @DeleteMapping
     public ResponseEntity<Void> deleteByUsername(@RequestParam String username) {
+        System.out.println(username);
         service.deleteByUsername(username);
         return ResponseEntity.noContent().build();
     }
