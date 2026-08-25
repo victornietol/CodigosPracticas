@@ -7,7 +7,7 @@ import com.example.SpringBoot_MySQL_UUID_prueba.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -25,8 +25,15 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Optional<UsuarioModel> findByUsername(String username) {
-        return repository.findByUsername(username);
+    public UsuarioModel findById(UUID uuid) {
+        return repository.findById(uuid)
+                .orElseThrow(() -> new ResourceNotFoundException("Recurso no encontrado por ID."));
+    }
+
+    @Override
+    public UsuarioModel findByUsername(String username) {
+        return repository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("Recurso no encontrado por USERNAME."));
     }
 
     @Override
@@ -40,7 +47,14 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Override
     public void deleteByUsername(String username) {
         UsuarioModel usuarioModel = repository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("Recurso no encontrado para eliminacion."));
+                .orElseThrow(() -> new ResourceNotFoundException("Recurso no encontrado para eliminacion por USERNAME."));
+        repository.delete(usuarioModel);
+    }
+
+    @Override
+    public void deleteByUuid(UUID uuid) {
+        UsuarioModel usuarioModel = repository.findById(uuid)
+                .orElseThrow(() -> new ResourceNotFoundException("Recurso no encontrado para eliminacion por UUID."));
         repository.delete(usuarioModel);
     }
 }

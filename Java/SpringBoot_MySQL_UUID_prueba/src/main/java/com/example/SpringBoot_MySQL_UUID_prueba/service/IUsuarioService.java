@@ -5,10 +5,13 @@ import com.example.SpringBoot_MySQL_UUID_prueba.model.UsuarioModel;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface IUsuarioService {
     List<UsuarioModel> getAll();
-    Optional<UsuarioModel> findByUsername(String username);
+    UsuarioModel findById(UUID uuid);
+    UsuarioModel findByUsername(String username);
     UsuarioModel create(UsuarioDTO usuarioDTO);
     void deleteByUsername(String username);
+    void deleteByUuid(UUID uuid);
 }
