@@ -34,7 +34,7 @@ if(isset($_SESSION['connected'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesion</title>
+    <title>Iniciar Sesion | Proyecto Académico</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./img/icono.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/icono.png">
     <link rel="stylesheet" href="./styles/styles.css">
@@ -77,16 +77,19 @@ if(isset($_SESSION['connected'])) {
                 <button type="submit">Ingresar</button>
         
                 <div class="register">
+                    <?php  
+                        session_unset(); // Eliminar variables de sesion
+                        session_destroy(); // Destriur sesion
+                    ?>
                     <p>
-                        No tengo cuenta
-                        <?php  
-                            session_unset(); // Eliminar variables de sesion
-                            session_destroy(); // Destriur sesion
-                        ?>
+                        1. No tengo cuenta
                         <a href="./register.php">Registrarse</a>
                     </p>
+                    <p class="space_p">
+                        2. <strong><a href="./access_free.php">Acceder sin cuenta</a></strong>
+                    </p>
                 </div>
-        
+
             </form>
         </div>
     </main>

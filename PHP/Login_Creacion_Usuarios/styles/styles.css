@@ -162,6 +162,10 @@ button {
     padding-right: 100px;
 }
 
+.space_p {
+    margin-top: 10px;
+}
+
 /*
 @media (max-width: 480px) {
     .wrapper {
