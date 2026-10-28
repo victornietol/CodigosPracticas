@@ -1,0 +1,25 @@
+package org.example.estructurasDatos.ejercicios;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class LongestSubstring {
+    public static void main(String[] args) {
+
+    }
+
+    public static int longestSubstring(String str) {
+        int maxLength = 0;
+        int left = 0;
+        Set<Character>  chars = new HashSet<>();
+
+        for(int right=0; right < str.length(); right++) {
+            while ( chars.contains(str.charAt(right)) ) {
+                chars.remove(str.charAt(right));
+                left++;
+            }
+
+        }
+        return  maxLength;
+    }
+}
